@@ -1,0 +1,69 @@
+[gd_scene load_steps=11 format=3 uid="uid://c54rf5s5g2b3v"]
+
+[ext_resource type="Script" uid="uid://b8rqbfprd57qw" path="res://Interactible/Earth/Scripts/earth_crystal.gd" id="1_k60mx"]
+[ext_resource type="Texture2D" uid="uid://cfsdt8x0k4ck5" path="res://Assets/Elements/earth_crystal.png" id="2_ftmjx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0368j"]
+size = Vector2(24, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m1k6v"]
+atlas = ExtResource("2_ftmjx")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l42sh"]
+atlas = ExtResource("2_ftmjx")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_112kv"]
+atlas = ExtResource("2_ftmjx")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pa52p"]
+atlas = ExtResource("2_ftmjx")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2euiv"]
+atlas = ExtResource("2_ftmjx")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6wvss"]
+atlas = ExtResource("2_ftmjx")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_luink"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m1k6v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l42sh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_112kv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pa52p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2euiv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6wvss")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Earth crystal" type="Area2D"]
+script = ExtResource("1_k60mx")
+metadata/_custom_type_script = "uid://17xvbu07gn44"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_0368j")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -16)
+sprite_frames = SubResource("SpriteFrames_luink")

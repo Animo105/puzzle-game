@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://bg5drwhfn70xu"]
+[gd_scene load_steps=7 format=3 uid="uid://bg5drwhfn70xu"]
 
 [ext_resource type="Script" uid="uid://d2l3d60vu2pjp" path="res://Player/Scripts/player.gd" id="1_4ntmi"]
 [ext_resource type="Texture2D" uid="uid://by4m6vh7uiupv" path="res://Assets/chinese guy.png" id="1_l8h54"]
+[ext_resource type="PackedScene" uid="uid://cr7en8ul7xb6u" path="res://UI/HUD/hud.tscn" id="3_btcbx"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_btcbx"]
 radius = 5.0
@@ -41,3 +42,6 @@ sprite_frames = SubResource("SpriteFrames_btcbx")
 position = Vector2(0, -11)
 target_position = Vector2(0, 15)
 hit_from_inside = true
+
+[node name="HUD" parent="." instance=ExtResource("3_btcbx")]
+visible = false

@@ -1,0 +1,74 @@
+[gd_scene load_steps=12 format=3 uid="uid://do5fajgwbuwnd"]
+
+[ext_resource type="Script" uid="uid://c5b0cjjf2e8cf" path="res://Interactible/Earth/Scripts/earth_element.gd" id="1_ubpsj"]
+[ext_resource type="Texture2D" uid="uid://c05atboet8jmr" path="res://Assets/Elements/earth_element.png" id="2_xkscd"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ubpsj"]
+radius = 9.05539
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_11oid"]
+atlas = ExtResource("2_xkscd")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_icf4q"]
+atlas = ExtResource("2_xkscd")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gj0rg"]
+atlas = ExtResource("2_xkscd")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bmf0y"]
+atlas = ExtResource("2_xkscd")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3o72m"]
+atlas = ExtResource("2_xkscd")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ukjmj"]
+atlas = ExtResource("2_xkscd")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gml5c"]
+atlas = ExtResource("2_xkscd")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sjmrg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_11oid")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_icf4q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gj0rg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bmf0y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3o72m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ukjmj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gml5c")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="Earth element" type="Area2D" groups=["reset"]]
+script = ExtResource("1_ubpsj")
+metadata/_custom_type_script = "uid://17xvbu07gn44"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ubpsj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_sjmrg")

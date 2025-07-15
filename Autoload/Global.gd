@@ -10,13 +10,13 @@ var current_element : elements :
 	set(value): current_element = value; change_current_element.emit()
 
 var water_element : int = 0 :
-	set(value): water_element = value; change_element_qte.emit()
+	set(value): water_element = clamp(value, 0, 5); change_element_qte.emit()
 var fire_element : int = 0 :
-	set(value): fire_element = value; change_element_qte.emit()
+	set(value): fire_element = clamp(value, 0, 5); change_element_qte.emit()
 var earth_element : int = 0 :
-	set(value): earth_element = value; change_element_qte.emit()
+	set(value): earth_element = clamp(value, 0, 5); change_element_qte.emit()
 var wind_element : int = 0 :
-	set(value): wind_element = value; change_element_qte.emit()
+	set(value): wind_element = clamp(value, 0, 5); change_element_qte.emit()
 
 func cycle_current_element_next():
 	match current_element:
@@ -38,3 +38,13 @@ func cycle_current_element_previous():
 			current_element = elements.fire
 		elements.wind:
 			current_element = elements.earth
+
+func reset():
+	SplashScreen.fade_in()
+	await SplashScreen.faded_in
+	water_element = 0
+	fire_element = 0
+	earth_element = 0
+	wind_element = 0
+	for node in get_tree().get_nodes_in_group("reset"):
+		node.reset()

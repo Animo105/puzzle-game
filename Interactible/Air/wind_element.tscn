@@ -1,0 +1,67 @@
+[gd_scene load_steps=11 format=3 uid="uid://cgynvkrdtp1oh"]
+
+[ext_resource type="Script" uid="uid://cn7jtg07jsc1s" path="res://Interactible/Air/Scripts/wind_element.gd" id="1_pcrsn"]
+[ext_resource type="Texture2D" uid="uid://df121wxvdwhbe" path="res://Assets/Elements/wind_element.png" id="2_pcrsn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5yx8o"]
+radius = 9.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xul0b"]
+atlas = ExtResource("2_pcrsn")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hikd5"]
+atlas = ExtResource("2_pcrsn")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lm86t"]
+atlas = ExtResource("2_pcrsn")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e6653"]
+atlas = ExtResource("2_pcrsn")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xyvro"]
+atlas = ExtResource("2_pcrsn")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g18oj"]
+atlas = ExtResource("2_pcrsn")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gfxhm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xul0b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hikd5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lm86t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e6653")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xyvro")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g18oj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Wind element" type="Area2D" groups=["reset"]]
+script = ExtResource("1_pcrsn")
+metadata/_custom_type_script = "uid://17xvbu07gn44"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_5yx8o")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_gfxhm")

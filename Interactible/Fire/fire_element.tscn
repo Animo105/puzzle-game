@@ -1,0 +1,67 @@
+[gd_scene load_steps=11 format=3 uid="uid://ck8m6enc2covp"]
+
+[ext_resource type="Script" uid="uid://dqgprcarv3m76" path="res://Interactible/Fire/Scripts/fire_element.gd" id="1_85pl4"]
+[ext_resource type="Texture2D" uid="uid://dp6kaqbvn1b5o" path="res://Assets/Elements/fire_element.png" id="2_85pl4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_n73dh"]
+radius = 9.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ltgvg"]
+atlas = ExtResource("2_85pl4")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_udvq6"]
+atlas = ExtResource("2_85pl4")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ue3d"]
+atlas = ExtResource("2_85pl4")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_urrt0"]
+atlas = ExtResource("2_85pl4")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5atn0"]
+atlas = ExtResource("2_85pl4")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4yuy1"]
+atlas = ExtResource("2_85pl4")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_u1s0r"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ltgvg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_udvq6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ue3d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_urrt0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5atn0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4yuy1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Fire element" type="Area2D" groups=["reset"]]
+script = ExtResource("1_85pl4")
+metadata/_custom_type_script = "uid://17xvbu07gn44"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_n73dh")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_u1s0r")
