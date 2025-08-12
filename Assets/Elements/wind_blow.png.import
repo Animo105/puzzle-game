@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dkgqodpfp2o6k"
-path="res://.godot/imported/wind_mill.png-baf11046e52c5d31c72e215dd268bf1a.ctex"
+uid="uid://dnub1tn35fs7y"
+path="res://.godot/imported/wind_blow.png-fdf399bc479b12a81bcc9d364ee86c1c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Elements/wind_mill.png"
-dest_files=["res://.godot/imported/wind_mill.png-baf11046e52c5d31c72e215dd268bf1a.ctex"]
+source_file="res://Assets/Elements/wind_blow.png"
+dest_files=["res://.godot/imported/wind_blow.png-fdf399bc479b12a81bcc9d364ee86c1c.ctex"]
 
 [params]
 

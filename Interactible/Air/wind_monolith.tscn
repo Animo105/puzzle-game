@@ -1,0 +1,69 @@
+[gd_scene load_steps=11 format=3 uid="uid://d2rbyjo37pxxr"]
+
+[ext_resource type="Script" uid="uid://cp82knm5117lx" path="res://Interactible/Air/Scripts/wind_monolith.gd" id="1_72dt5"]
+[ext_resource type="Texture2D" uid="uid://b8mbggmcrbo7n" path="res://Assets/Elements/wind_monolith.png" id="2_72dt5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_72dt5"]
+size = Vector2(15, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jb2dl"]
+atlas = ExtResource("2_72dt5")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_apmb0"]
+atlas = ExtResource("2_72dt5")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cs3fk"]
+atlas = ExtResource("2_72dt5")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vgkqw"]
+atlas = ExtResource("2_72dt5")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xnkh4"]
+atlas = ExtResource("2_72dt5")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rtjpj"]
+atlas = ExtResource("2_72dt5")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_si8ba"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jb2dl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_apmb0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cs3fk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vgkqw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xnkh4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rtjpj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="Wind Monolith" type="Area2D"]
+script = ExtResource("1_72dt5")
+metadata/_custom_type_script = "uid://17xvbu07gn44"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_72dt5")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_si8ba")
+frame_progress = 0.126755

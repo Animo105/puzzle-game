@@ -1,0 +1,17 @@
+[
+	{
+		"level_id":0,
+		"level_scene":"res://Levels/earth_tutorial.tscn",
+		"level_name":"EARTH_TUTO"
+	},
+	{
+		"level_id":1,
+		"level_scene":"res://Levels/wind_tutorial.tscn",
+		"level_name":"WIND_TUTO"
+	},
+	{
+		"level_id":2,
+		"level_scene":"res://Levels/fire_tutorial.tscn",
+		"level_name":"FIRE_TUTO"
+	},
+]

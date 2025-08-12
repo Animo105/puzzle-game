@@ -5,6 +5,7 @@ class_name Player
 @onready var ray: RayCast2D = $Ray
 # constente des scene d'éléments
 const EARTH_PILLAR = preload("res://Player/Elements Activations/earth_pillar.tscn")
+const WIND_CURRENT = preload("res://Player/Elements Activations/wind_current.tscn")
 
 # constante de mouvement
 const AIR_MULTIPLIER : float = 0.7
@@ -18,11 +19,11 @@ const TERMINAL_VELOCITY : float = 500
 var initial_position : Vector2
 var last_input_dir : String = ""
 
-var dig_direction : String = ""
-var dig_position : Vector2 = Vector2.ZERO
+var dig_direction : Vector2i = Vector2i.ZERO
+var dig_position : Vector2i = Vector2i.ZERO
 var dig_tilemap : TileMapLayer = null
 
-enum states { ground, air, dig }
+enum states { ground, air, dig, awaiting }
 var state : states = states.air
 
 var sprite_direction : float: # set the direction of the sprite
@@ -42,6 +43,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	match state:
+		# ######################################## #
 		states.ground:
 			var dir = inputx()
 			if dir == 0:
@@ -67,26 +69,53 @@ func _physics_process(delta: float) -> void:
 			sprite_direction = dir # change sprite direction
 			move_and_slide()
 			
+			# handle air jump
+			if Global.wind_element > 0 && Input.is_action_just_pressed("Jump"):
+				if ray.get_collider() == null:
+					Global.wind_element -= 1
+					velocity.y = JUMP_STRENGHT
+			
 			if is_on_floor(): # if on floor, change state
 				velocity.y = 0
 				state = states.ground
 		# ######################################## #
 		states.dig:
 			match dig_direction:
-				"":
-					if Input.is_action_just_pressed("Left"): dig_direction = "left"
-					elif Input.is_action_just_pressed("Right"): dig_direction = "right"
-					elif Input.is_action_just_pressed("Up"): dig_direction = "up"
-					elif Input.is_action_just_pressed("Down"): dig_direction = "down"
-				"left":
-					pass
-				"right":
-					pass
-				"up":
-					pass
-				"down":
-					var next_pos = dig_tilemap.to_global(dig_tilemap.map_to_local(dig_position))
-					
+				Vector2i.ZERO:
+					if Input.is_action_just_pressed("Left"): dig_direction = Vector2i.LEFT
+					elif Input.is_action_just_pressed("Right"): dig_direction = Vector2i.RIGHT
+					elif Input.is_action_just_pressed("Up"): dig_direction = Vector2i.UP
+					elif Input.is_action_just_pressed("Down"): dig_direction = Vector2i.DOWN
+				_:
+					# bouge le joueur a la position
+					var tween : Tween = create_tween()
+					state = states.awaiting
+					tween.tween_property(self, "global_position", dig_tilemap.to_global(dig_tilemap.map_to_local(dig_position)), 0.05)
+					await tween.finished
+					state = states.dig
+					# check la prochaine tile
+					var tileData : TileData = dig_tilemap.get_cell_tile_data(dig_position + dig_direction)
+					if tileData != null:
+						# increase position pour lerp a la bonne place
+						if tileData.get_custom_data("Tile Type") == "dirt":
+							dig_position += dig_direction
+						# end le dig
+						elif tileData.get_custom_data("Tile Type") == "background":
+							state = states.awaiting
+							dig_position  += dig_direction
+							tween = create_tween()
+							tween.tween_property(self, "global_position", dig_tilemap.to_global(dig_tilemap.map_to_local(dig_position)), 0.1)
+							await tween.finished
+							dig_direction = Vector2i.ZERO
+							dig_position = Vector2i.ZERO
+							dig_tilemap = null
+							state = states.air
+							
+						# si c'est un mur, remet la direction a zéro 
+						else:
+							dig_direction = Vector2i.ZERO
+					# si pas de tile, agi comme sic'étais un mur
+					else: dig_direction = Vector2i.ZERO
 		# ######################################## #
 
 func _input(event: InputEvent) -> void:
@@ -108,6 +137,7 @@ func _input(event: InputEvent) -> void:
 	# ######################################## #
 	# activate element by direction
 	elif event.is_action_pressed("activate_element"):
+		if state == states.awaiting : return # fait pas d'activation quand en await
 		match Global.current_element:
 			Global.elements.water:
 				water_activation()
@@ -167,6 +197,7 @@ func fire_activation():
 
 func earth_activation():
 	if Global.earth_element == 0: return # if no elements, return
+	if state != states.ground : return # return if not on ground
 	match last_input_dir:
 		"down": # dig down
 			var collider = ray.get_collider() # get ground collider
@@ -177,7 +208,8 @@ func earth_activation():
 						Global.earth_element -= 1
 						dig_position = collider.get_coords_for_body_rid(ray.get_collider_rid()) # set dig position at the coord on the map
 						dig_tilemap = collider # set the tilemap as the collider to check tile position based on coords
-						dig_direction = "down" # set starting dig direction as down
+						global_position.y = dig_tilemap.to_global(dig_tilemap.map_to_local(dig_position)).y
+						dig_direction = Vector2i.DOWN # set starting dig direction as down
 						state = states.dig
 
 		_: # spawn a pillar to the left
@@ -193,12 +225,21 @@ func earth_activation():
 
 func wind_activation():
 	if Global.wind_element == 0: return # if no elements, return
+	
+	# sinon, check pour les inputs
 	match last_input_dir:
 		"up":
 			pass
 		"down":
 			pass
 		"left":
-			pass
+			Global.wind_element -= 1
+			var wind_current = WIND_CURRENT.instantiate()
+			Global.game_manager.current_scene.add_child(wind_current)
+			wind_current.global_position = global_position
+			wind_current.scale.x = -1
 		"right":
-			pass
+			Global.wind_element -= 1
+			var wind_current = WIND_CURRENT.instantiate()
+			Global.game_manager.current_scene.add_child(wind_current)
+			wind_current.global_position = global_position

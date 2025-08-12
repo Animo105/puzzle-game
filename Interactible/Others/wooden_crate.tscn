@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://0koysesks1ig"]
+
+[ext_resource type="Script" uid="uid://x20y5ey62akm" path="res://Interactible/Others/Scripts/wooden_crate.gd" id="1_hqch6"]
+[ext_resource type="Texture2D" uid="uid://dpw3njtdfi3n4" path="res://Assets/objects/wood_crate.png" id="1_hxtfh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a0jgk"]
+size = Vector2(16, 16)
+
+[node name="Wooden Crate" type="CharacterBody2D" groups=["reset"]]
+script = ExtResource("1_hqch6")
+
+[node name="WoodCrate" type="Sprite2D" parent="."]
+texture = ExtResource("1_hxtfh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_a0jgk")

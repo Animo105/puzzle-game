@@ -40,7 +40,7 @@ sprite_frames = SubResource("SpriteFrames_btcbx")
 
 [node name="Ray" type="RayCast2D" parent="."]
 position = Vector2(0, -11)
-target_position = Vector2(0, 15)
+target_position = Vector2(0, 20)
 hit_from_inside = true
 
 [node name="HUD" parent="." instance=ExtResource("3_btcbx")]

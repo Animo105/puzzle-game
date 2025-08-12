@@ -1,0 +1,15 @@
+,en,fr
+START,Start,Commencer
+LOAD,Load,Charger
+OPTIONS,Options,Options
+QUIT,Quit,Quitter
+RESUME,Resume,Continuer
+MAIN_MENU,Main menu,Menu principal
+MANA_ACTIVE,Activate elements,Active l'élément
+TIME_BACK,Return to the start,Retour au début
+TIME,Time played: ,Temps joué: 
+RESET_PROGRESS,Reset progression,Réinit. progression
+BACK,Back,Retour
+ONE_ELEMENT,Give one element,Donne un élément
+ALL_ELEMENT,Fill element,Remplit l'élément
+EARTH_DOWN,Down (%s) + Action (%s) to Drill,Bas (%s) + Action (%s) pour creuser

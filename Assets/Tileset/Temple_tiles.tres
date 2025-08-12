@@ -179,6 +179,7 @@ texture = ExtResource("1_mifb3")
 9:1/0/terrains_peering_bit/top_side = 0
 9:1/0/terrains_peering_bit/top_right_corner = 0
 10:1/0 = 0
+10:1/0/custom_data_0 = "background"
 11:1/0 = 0
 11:1/0/terrain_set = 0
 11:1/0/terrain = 0
